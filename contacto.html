@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Contacto</title>
+  <link rel="stylesheet" href="./styles.css">
+  
+</head>
+<a
+  href="https://www.linkedin.com/in/keyci-campos-mesén-7657442b6"
+  class="floating-linkedin"
+  target="_blank"
+  rel="noopener"
+  aria-label="LinkedIn"
+>
+  in
+</a>
+<body>
+    <!-- HEADER -->
+    <header class="header" style="background-color: rgba(236, 240, 238, 0.577);">
+        <div class="logo">
+        <span class="dot"></span>
+        <strong>Keyci Campos</strong>
+        <small>Ingeniería en Informática</small>
+        </div>
+
+        <nav class="nav">
+        <a href="./index.html#sobre-mi">Sobre mí </a>
+        <a href="./index.html#proyectos-section">Experiencia</a>
+        <a href="./contacto.html" >Contacto</a>
+        <a href="./hobbies.html">Hobbies</a>
+        </nav>
+
+  </header>
+
+  <main class="contact-page">
+    <section class="contact-hero">
+      <h1>Contacto</h1>
+      <p>Escribime y te respondo lo antes posible.</p>
+    </section>
+
+    <section class="contact-layout">
+      <!-- Card izquierda: info rápida -->
+      <aside class="contact-card contact-card--info">
+        <h2>Hablemos</h2>
+        <p>Podés escribirme por el formulario o por LinkedIn.</p>
+
+        <div class="contact-pills">
+          <span class="pill yellow">Aprendo rápido</span>
+          <span class="pill red">Tengo habilidades de liderazgo</span>
+          <span class="pill blue">Me gusta trabajar en equipo</span>
+        </div>
+
+        <a class="contact-linkedin"
+           href="https://www.linkedin.com/in/keyci-campos-mesén-7657442b6"
+           target="_blank" rel="noopener">
+          Ver LinkedIn
+        </a>
+      </aside>
+
+      <!-- Card derecha: formulario -->
+      <section class="contact-card contact-card--form">
+        <h2>Enviame un mensaje</h2>
+
+        <form id="contactForm" class="contact-form" autocomplete="on">
+          <div class="field">
+            <label for="name">Nombre</label>
+            <input id="name" name="name" type="text" placeholder="Tu nombre" required />
+          </div>
+
+          <div class="field">
+            <label for="email">Correo</label>
+            <input id="email" name="email" type="email" placeholder="tucorreo@ejemplo.com" required />
+          </div>
+
+          <div class="field">
+            <label for="topic">Motivo</label>
+            <select id="topic" name="topic" required>
+              <option value="" selected disabled>Seleccioná una opción</option>
+              <option value="proyecto">Proyecto</option>
+              <option value="colaboracion">Colaboración</option>
+              <option value="consulta">Consulta</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="message">Mensaje</label>
+            <textarea id="message" name="message" rows="5"
+              placeholder="Contame en qué te puedo ayudar..." required></textarea>
+          </div>
+
+          <button type="submit" class="btn-submit">
+            Enviar mensaje
+          </button>
+
+          <!-- Mensaje de estado (luego lo usamos con Firebase) -->
+          <p id="formStatus" class="form-status" aria-live="polite"></p>
+        </form>
+      </section>
+    </section>
+  </main>
+<script type="module" src="./js/contacto.js"></script>
+
+
+</body>
+</html>
+

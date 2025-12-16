@@ -1,0 +1,342 @@
+    <!DOCTYPE html>
+    <html lang="es">
+    <head>
+    <meta charset="UTF-8">
+    <title>Keyci Campos| Página Personal</title>
+    <link rel="stylesheet" href="./styles.css">
+    </head>
+    <a
+  href="https://www.linkedin.com/in/keyci-campos-mesén-7657442b6"
+  class="floating-linkedin"
+  target="_blank"
+  rel="noopener"
+  aria-label="LinkedIn"
+>
+  in
+</a>
+<script>
+  const navLinks = document.querySelectorAll(".nav-link");
+  const header = document.querySelector(".header");
+  const navHeight = header ? header.offsetHeight : 0;
+
+  // 1) ACTIVE por URL (para contacto.html y hobbies.html, y para index.html#...)
+  const currentPath = location.pathname.split("/").pop() || "index.html";
+  const currentHash = location.hash; // #sobre-mi, #proyectos, etc.
+
+  function setActiveByHref(hrefMatch) {
+    navLinks.forEach(a => a.classList.toggle("active", a.getAttribute("href") === hrefMatch));
+  }
+
+  // Si estamos en contacto/hobbies, marcamos por página
+  if (currentPath === "contacto.html") {
+    setActiveByHref("contacto.html");
+  } else if (currentPath === "hobbies.html") {
+    setActiveByHref("hobbies.html");
+  }
+
+  // Si estamos en index (con o sin hash), marcamos por sección "general"
+  // (Proyectos activo también cuando estés en Certificaciones)
+  if (currentPath === "index.html" || currentPath === "") {
+    // si viene con hash, activamos el link correspondiente (si existe)
+    if (currentHash) {
+      // intentamos match exacto tipo "index.html#proyectos"
+      const target = `index.html${currentHash}`;
+      const hasExact = Array.from(navLinks).some(a => a.getAttribute("href") === target);
+      if (hasExact) setActiveByHref(target);
+    }
+
+    // 2) Scroll-spy SOLO en index.html
+    const sections = document.querySelectorAll("section[id]");
+    if (sections.length) {
+      window.addEventListener("scroll", () => {
+        let currentSectionId = "";
+
+        sections.forEach(section => {
+          const top = section.offsetTop - navHeight - 40;
+          const bottom = top + section.offsetHeight;
+          if (scrollY >= top && scrollY < bottom) currentSectionId = section.id;
+        });
+
+        // Regla: certificaciones también activa "Proyectos"
+        if (currentSectionId === "certificaciones") currentSectionId = "proyectos";
+
+        // Activar navbar para index
+        const href = `index.html#${currentSectionId}`;
+        navLinks.forEach(a => a.classList.toggle("active", a.getAttribute("href") === href));
+      });
+    }
+  }
+</script>
+    
+    <body>
+
+    <!-- HEADER -->
+    <header class="header" style="background-color: rgba(236, 240, 238, 0.577);">
+        <div class="logo">
+        <span class="dot"></span>
+        <strong>Keyci Campos</strong>
+        <small>Ingeniería en Informática</small>
+        </div>
+
+        <nav class="nav">
+        <a href="#sobre-mi" class="nav-link" id="sobremi">Sobre mí </a>
+        <a href="#proyectos-section" class="nav-link" id="experiencia">Experiencia</a>
+        <a href="./contacto.html" class="nav-link" id="contacto">Contacto</a>
+        <a href=" class="nav-link" id="Hobbies">Hobbies</a>
+        </nav>
+    </header>
+
+    <!-- SOBRE MI -->
+<section class="hero" id="sobre-mi">
+
+  <div class="hero-img">
+    <div class="profile-ring">
+      <img src="./images/fotoperfil.jpg" alt="Foto de perfil">
+     
+    </div>
+      </div>
+
+  <div class="hero-text">
+    <h1>¡Hola!</h1>
+    <h2>Soy Keyci Campos</h2>
+    <p>
+      Estudiante de Ingeniería en Informática con pasión por el desarrollo web y la tecnología...
+    </p>
+
+    <div class="buttons">
+      <a href="#skills" class="btn yellow">Habilidades</a>
+      <a href="./proyectos.html" class="btn red">Proyectos</a>
+      <a href="./contacto.html" class="btn blue">Contacto</a>
+    </div>
+  </div>
+
+  <!-- CTA DERECHO -->
+  <div class="hero-cta">
+    <a href="./docs/Keyci_Campos_ Resume.pdf" class="cv-btn" download>
+      Descargar CV
+    </a>
+  </div>
+
+
+
+</section>
+
+    
+
+<section class="skills" id="skills">
+  <h2>Habilidades</h2>
+
+  <div class="skills-grid">
+
+    <div class="skill-group dev">
+      <h3><span class="icon">💻</span>Desarrollo & Tecnología</h3>
+      <div class="skill-tags">
+        <span>HTML</span>
+        <span>CSS</span>
+        <span>JavaScript</span>
+        <span>Python</span>
+        <span>SQL</span>
+        <span>Git / GitHub</span>
+        <span>Database Basics</span>
+      </div>
+    </div>
+
+    <div class="skill-group it">
+      <h3><span class="icon">🔧</span>Soporte & IT</h3>
+      <div class="skill-tags">
+        <span>IT Support</span>
+        <span>Troubleshooting</span>
+        <span>Hardware Maintenance</span>
+        <span>Networking Basics</span>
+      </div>
+    </div>
+
+    <div class="skill-group meth">
+      <h3><span class="icon">📐</span>Metodologías & Diseño</h3>
+      <div class="skill-tags">
+        <span>Agile / Scrum</span>
+        <span>Design Thinking</span>
+        <span>Business Model Canvas</span>
+      </div>
+    </div>
+
+    <div class="skill-group soft">
+      <h3><span class="icon">💬</span>Habilidades Blandas</h3>
+      <div class="skill-tags">
+        <span>Leadership</span>
+        <span>Teamwork</span>
+        <span>Communication</span>
+        <span>Problem Solving</span>
+        <span>Critical Thinking</span>
+        <span>Adaptability</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+    <!-- PROYECTOS Experiencia-->
+ <section class="projects" id="proyectos-section">
+  <div class="projects-header">
+    <h2>Proyectos</h2>
+    <p>Experiencia, reconocimientos y proyectos de impacto.</p>
+  </div>
+
+  <!-- BLOQUE A: Experiencia -->
+  <h3 class="projects-subtitle">Experiencia</h3>
+  <div class="projects-grid">
+
+    <article class="project-card dev">
+      <div class="project-top">
+        <span class="badge yellow">Desarrollo Web</span>
+        <span class="year">2023</span>
+      </div>
+      <h4>Bytes Studio Arts &amp; Design — Web Junior</h4>
+      <p>
+        Desarrollo y optimización de interfaces responsivas, mejoras de UX y compatibilidad.
+        Trabajo con metodologías Ágiles/Scrum y Git/GitHub.
+      </p>
+      <div class="tech">
+        <span>HTML</span><span>CSS</span><span>JavaScript</span><span>Git/GitHub</span><span>Agile/Scrum</span>
+      </div>
+    </article>
+
+    <article class="project-card  it">
+      <div class="project-top">
+        <span class="badge red">IT Support</span>
+        <span class="year">2022</span>
+      </div>
+      <h4>Universidad Técnica Nacional — Pasantía IT Support</h4>
+      <p>
+        Diagnóstico y mantenimiento de hardware, help desk, configuración de equipos
+        y soporte de conectividad e inventario.
+      </p>
+      <div class="tech">
+        <span>Troubleshooting</span><span>Hardware</span><span>Help Desk</span><span>Networking Basics</span>
+      </div>
+    </article>
+
+  </div>
+
+  <!-- BLOQUE B: Distinciones & Proyectos -->
+  <h3 class="projects-subtitle">Distinciones &amp; Proyectos</h3>
+  <div class="projects-grid">
+
+    <article class="project-card soft">
+      <div class="project-top">
+        <span class="badge blue">Liderazgo</span>
+        <span class="year">2024</span>
+      </div>
+      <h4>Anne Frank Youth Forum Delegate — Netherlands</h4>
+      <p>
+        Representación de Costa Rica en foro internacional sobre derechos humanos,
+        liderazgo juvenil y proyectos de innovación social.
+      </p>
+      <div class="tech">
+        <span>Oratoria</span><span>Pensamiento crítico</span><span>Trabajo intercultural</span>
+      </div>
+    </article>
+
+    <article class="project-card dev">
+      <div class="project-top">
+        <span class="badge yellow">Innovación</span>
+        <span class="year">2022</span>
+      </div>
+      <h4>Latin Coder del año — Junior Achievement</h4>
+      <p>
+        Soluciones tecnológicas para sostenibilidad (economía circular), diseño de modelo
+        de negocio y pitch ante jueces internacionales.
+      </p>
+      <div class="tech">
+        <span>Economía circular</span><span>Modelo de negocio</span><span>Pitch</span>
+      </div>
+    </article>
+
+    <article class="project-card soft">
+      <div class="project-top">
+        <span class="badge red">Impacto Social</span>
+        <span class="year">2021</span>
+      </div>
+      <h4>ExpoJovem — Ganador Nacional (Mejor Modelo de Negocio)</h4>
+      <p>
+        Sistema ecológico de intercambio: reciclaje a cambio de recursos escolares.
+        Diseño operativo, validación con usuarios y marco de sostenibilidad.
+      </p>
+      <div class="tech">
+        <span>Sostenibilidad</span><span>Validación</span><span>Operación</span>
+      </div>
+    </article>
+
+  </div>
+
+<h3 class="projects-subtitle">Certificaciones</h3>
+
+<div class="projects-grid certifications">
+
+  <article class="project-card meth">
+    <div class="project-top">
+      <span class="badge blue">Networking</span>
+    </div>
+    <h4>CCNA 1 — Introduction to Networks</h4>
+    <p>
+      Fundamentos de redes, direccionamiento IP, modelos OSI y TCP/IP,
+      y conceptos básicos de conectividad y seguridad.
+    </p>
+    <div class="tech">
+      <span>Cisco</span>
+      <span>Networking</span>
+      <span>IT Fundamentals</span>
+    </div>
+  </article>
+
+  <article class="project-card yellow dev">
+    <div class="project-top">
+      <span class="badge yellow">Innovación</span>
+    </div>
+    <h4>Design Thinking</h4>
+    <p>
+      Metodología centrada en el usuario para la resolución de problemas,
+      ideación, prototipado y validación de soluciones.
+    </p>
+    <div class="tech">
+      <span>UX</span>
+      <span>Innovación</span>
+      <span>Prototipado</span>
+    </div>
+  </article>
+
+  <article class="project-card soft">
+    <div class="project-top">
+      <span class="badge red">Gestión</span>
+    </div>
+    <h4>Business Model Canvas</h4>
+    <p>
+      Diseño y análisis de modelos de negocio, propuesta de valor,
+      segmentos de clientes y viabilidad operativa.
+    </p>
+    <div class="tech">
+      <span>Modelo de negocio</span>
+      <span>Estrategia</span>
+    </div>
+  </article>
+
+  <article class="project-card dev">
+    <div class="project-top">
+      <span class="badge yellow">Agile</span>
+    </div>
+    <h4>Agile / Scrum Fundamentals</h4>
+    <p>
+      Principios ágiles, roles Scrum, eventos y trabajo colaborativo
+      en equipos multidisciplinarios.
+    </p>
+    <div class="tech">
+      <span>Scrum</span>
+      <span>Agile</span>
+      <span>Trabajo en equipo</span>
+    </div>
+  </article>
+
+</div>
+</section>
+    </body>
+    </html>
